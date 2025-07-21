@@ -7,10 +7,10 @@ import ellipse from "../../assets/ellipse.png";
 export default function HeroBanner() {
   return (
     <section className=" w-full max-w-[1298px] h-150 sm:h-180 md:h-200 lg:h-211.5 flex flex-col justify-end items-center text-[#171717] relative">
-      <main className="relative max-w-202.5 w-full h-full flex justify-center items-end peer group z-5">
+      <main className="relative max-w-202.5 w-full h-full flex justify-center items-end peer group z-5 ">
         <div
           id="ellipse"
-          className=" max-w-202.5 w-full h-101.5 rounded-t-[406px] absolute"
+          className=" max-w-202.5 lg:w-full w-[80%]  h-101.5 rounded-t-[406px] absolute"
         >
           <img
             src={ellipse}
