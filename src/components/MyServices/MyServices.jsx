@@ -72,7 +72,7 @@ export default function MyServices() {
           <h3 className="text-[48px] font-[700] flex gap-3">
             My <p className="text-[#FD853A]"> Services</p>
           </h3>
-          <p className="text-[20px] w-[50%]">{servicesDescription}</p>
+          <p className="text-[20px] md:w-[50%] w-full">{servicesDescription}</p>
         </article>
 
         <main
