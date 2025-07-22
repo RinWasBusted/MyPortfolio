@@ -3,6 +3,7 @@ import "./App.css";
 import HeroBanner from "./components/HeroBanner/HeroBanner.jsx";
 import MyServices from "./components/MyServices/MyServices.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
+import Test from "./Test.jsx";
 
 function App() {
   return (

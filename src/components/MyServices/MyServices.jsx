@@ -1,13 +1,34 @@
+import React, { useCallback } from "react";
 import background from "../../assets/MyServicesBackground.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import "./embla.css";
+import DotButton from "./DotNav/DotButton.jsx";
+import useDotButton from "./DotNav/useDotButton.jsx";
+import "./carousel.css";
 
 export default function MyServices() {
-  const [emblaRef] = useEmblaCarousel({ loop: true, slidesToScroll: 1 }, [
-    Autoplay({ delay: 4000 }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, slidesToScroll: 1 },
+    [Autoplay({ delay: 4000 })]
+  );
 
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DOT NAVIGATION~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const onNavButtonClick = useCallback((emblaApi) => {
+    const autoplay = emblaApi?.plugins()?.autoplay;
+    if (!autoplay) return;
+
+    const resetOrStop =
+      autoplay.options.stopOnInteraction === false
+        ? autoplay.reset
+        : autoplay.stop;
+
+    resetOrStop();
+  }, []);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+    emblaApi,
+    onNavButtonClick
+  );
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SERVICES DESCRIPTION~~~~~~~~~~~~~~~~~~~~~~~~
 
   const servicesDescription =
@@ -55,7 +76,7 @@ export default function MyServices() {
         </article>
 
         <main
-          className="embla w-full mx-10 lg:mx-0 overflow-hidden h-127"
+          className="embla w-full mx-10 lg:mx-0 overflow-hidden h-auto"
           ref={emblaRef}
         >
           <div className="embla__container ">
@@ -63,6 +84,20 @@ export default function MyServices() {
               <div key={index} className="embla__slide">
                 <ItemCard service={item.service} pic={item.pic}></ItemCard>
               </div>
+            ))}
+          </div>
+
+          <div className="embla__dots flex justify-center items-center gap-3 mt-8 ">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={"duration-300 w-4 h-4 rounded-[8px] cursor-pointer bg-[#E4E7EC] embla__dot".concat(
+                  index === selectedIndex
+                    ? " embla__dot--selected w-12 bg-[#FD853A]"
+                    : ""
+                )}
+              />
             ))}
           </div>
         </main>
