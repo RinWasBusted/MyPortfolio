@@ -6,7 +6,7 @@ import ellipse from "../../assets/ellipse.png";
 
 export default function HeroBanner() {
   return (
-    <section className=" w-full max-w-[1298px] h-150 sm:h-180 md:h-200 lg:h-211.5 flex flex-col justify-end items-center text-[#171717] relative">
+    <section className=" w-full max-w-[1298px] h-150 sm:h-180 md:h-200 lg:h-211.5 flex flex-col justify-end items-center text-[#171717] relative px-5">
       <main className="relative max-w-202.5 w-full h-full flex justify-center items-end peer group z-5 ">
         <div
           id="ellipse"
@@ -31,7 +31,7 @@ export default function HeroBanner() {
         <section className="absolute w-92 h-20 backdrop-blur-sm bg-transparent bottom-10 z-10 rounded-[40px] shadow-lg shadow-orange-500/50 text-white hidden sm:flex flex-row-reverse justify-between items-center px-2.5 gap-2.5 font-[600] text-[25px] ">
           <button className="flex justify-center duration-300 items-center grow-1 w-32 h-15 cursor-pointer peer hover:w-52 hover:bg-[#FD853A] rounded-[30px] group/btn">
             Hire me
-            <i class="fa-solid fa-up-right-from-square ml-2 !hidden group-hover/btn:!inline"></i>
+            <i className="fa-solid fa-up-right-from-square ml-2 !hidden group-hover/btn:!inline"></i>
           </button>
           <button className="w-52 h-15 bg-[#FD853A] rounded-[30px] flex justify-center items-center cursor-pointer peer-hover:w-32 duration-300 peer-hover:bg-transparent group">
             Portfolio
@@ -58,14 +58,14 @@ export default function HeroBanner() {
           />
         </h2>
       </article>
-      <article className="absolute hidden lg:flex flex-col left-0 text-[#344054] text-[20px] w-82 font-[600] top-[50%] duration-300 peer-hover:translate-y-[-200px]">
+      <article className="absolute hidden lg:flex flex-col left-5 text-[#344054] text-[20px] w-82 font-[600] top-[50%] duration-300 peer-hover:translate-y-[-200px]">
         <i className="fa-solid fa-quote-left text-[36px] w-9 h-9"></i>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum quod
           ad nesciunt?
         </p>
       </article>
-      <article className="absolute hidden lg:flex flex-col text-[#171717] text-[20px] font-[600] top-[50%] right-0 text-end duration-300 peer-hover:translate-y-[-200px]">
+      <article className="absolute hidden lg:flex flex-col text-[#171717] text-[20px] font-[600] top-[50%] right-5 text-end duration-300 peer-hover:translate-y-[-200px]">
         <div className="text-[#FD853A]">
           <i className="fa-solid fa-star"></i>
           <i className="fa-solid fa-star"></i>

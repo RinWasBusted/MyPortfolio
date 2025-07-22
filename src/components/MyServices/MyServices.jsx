@@ -68,7 +68,7 @@ export default function MyServices() {
       className="w-full bg-cover bg-center bg-no-repeat  min-h-220  overflow-hidden rounded-4xl lg:rounded-[71px] flex justify-center items-center select-none"
     >
       <div className="text-white flex flex-col justify-between items-center w-full h-full max-w-[1298px] py-25">
-        <article className="w-full flex flex-col justify-start mb-10 px-10 md:flex-row md:justify-between md:items-center lg:px-0">
+        <article className="w-full flex flex-col justify-start mb-10 px-10 md:flex-row md:justify-between md:items-center lg:px-5">
           <h3 className="text-[48px] font-[700] flex gap-3">
             My <p className="text-[#FD853A]"> Services</p>
           </h3>

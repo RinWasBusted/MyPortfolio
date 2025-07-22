@@ -6,7 +6,7 @@ export default function RunningText() {
 
   useEffect(() => {
     setTextList([
-      "UX Desing",
+      "UX Design",
       "App Design",
       "Dashboard",
       "Wireframe",
@@ -24,7 +24,7 @@ export default function RunningText() {
         {textList.map((item, index) => (
           <div key={index} className="h-full flex items-center text-[48px]">
             {item}
-            <i className="fa-solid fa-star text-[34px] text-[#FD853A] mx-2"></i>
+            <i className="fa-solid fa-star text-[34px] text-[#FD853A] mx-5"></i>
           </div>
         ))}
       </Marquee>
