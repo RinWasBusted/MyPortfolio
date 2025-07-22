@@ -65,24 +65,6 @@ export default function MyWorkExperience() {
             </article>
           </section>
         ))}
-        {/* <section className="w-full flex justify-between mb-12">
-          <div className="w-12 h-12 border-dashed border-2 rounded-[50%] flex justify-center items-center before:bg-[#FD853A] before:w-9 before:h-9 before:rounded-[50%] absolute bg-white left-[49%]"></div>
-          <article className="flex flex-col items-start w-[35%]">
-            <h3 className="text-[#344054] text-[40px] font-[600]">
-              Cognizant, Mumbai
-            </h3>
-            <p className="text-[#98A2B3] text-[24px]">Sep 2016- July 2020</p>
-          </article>
-          <article className="flex flex-col items-start w-[35%]">
-            <h3 className="text-[#344054] text-[40px] font-[600]">
-              Experience Designer
-            </h3>
-            <p className="text-[#98A2B3] text-[24px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-              ratione iste quibusdam neque rerum at repudiandae tempore?
-            </p>
-          </article>
-        </section> */}
       </main>
     </section>
   );
