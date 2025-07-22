@@ -5,6 +5,7 @@ import MyServices from "./components/MyServices/MyServices.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import MyWorkExperience from "./components/MyWorkExperience/MyWorkExperience.jsx";
 import WhyHireMe from "./components/WhyHireMe/WhyHireMe.jsx";
+import RunningText from "./components/RunningText/RunningText.jsx";
 import Test from "./Test.jsx";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <MyServices></MyServices>
       <MyWorkExperience></MyWorkExperience>
       <WhyHireMe></WhyHireMe>
+      <RunningText></RunningText>
     </div>
   );
 }
