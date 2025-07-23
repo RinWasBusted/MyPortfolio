@@ -1,4 +1,4 @@
-import youngwomen from "../../assets/young-pretty-woman-looking-happy-goofy-with-broad-fun-loony-smile-eyes-wide-open-against-white-wall 2.png";
+import youngwomen from "../../assets/young-pretty-woman-looking-happy-goofy-with-broad-fun-loony-smile-eyes-wide-open-against-white-wall2.png";
 import youngwomendeco from "../../assets/youngwomandeco.png";
 import vector1 from "../../assets/vector1.png";
 import vector2 from "../../assets/vector2.png";
