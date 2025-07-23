@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import MyWorkExperience from "./components/MyWorkExperience/MyWorkExperience.jsx";
 import WhyHireMe from "./components/WhyHireMe/WhyHireMe.jsx";
 import RunningText from "./components/RunningText/RunningText.jsx";
+import MyProjects from "./components/MyProjects/MyProjects.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Test from "./Test.jsx";
 
@@ -18,6 +19,7 @@ function App() {
       <MyWorkExperience></MyWorkExperience>
       <WhyHireMe></WhyHireMe>
       <RunningText></RunningText>
+      <MyProjects></MyProjects>
       <Footer></Footer>
     </div>
   );

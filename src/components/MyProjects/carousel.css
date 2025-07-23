@@ -1,0 +1,32 @@
+.embla__container {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+.embla__slide {
+  flex: 0 0 90%; /* Default slide covers 100% of the viewport */
+  min-width: 0;
+}
+@media (min-width: 640px) {
+  .embla__slide {
+    flex: 0 0 50%; /* Breakpoint SM slide covers 50% of the viewport */
+  }
+}
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 31%; /* Breakpoint MD slide covers 31% of the viewport */
+  }
+}
+.embla__slide {
+  margin-right: 30px; /* Default slide gap */
+}
+@media (min-width: 768px) {
+  .embla__slide {
+    margin-right: 20px; /* Breakpoint MD gap */
+  }
+}
+@media (min-width: 1024px) {
+  .embla__slide {
+    margin-right: 30px; /* Breakpoint LG gap */
+  }
+}
