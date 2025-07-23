@@ -10,10 +10,14 @@ export default function NavBar({ scrollTargets }) {
   const [menuList, setMenuList] = useState([
     { content: "Home", active: true, ref: scrollTargets?.heroRef },
     { content: "Service", active: false, ref: scrollTargets?.serviceRef },
-    { content: "Work Experience", active: false, ref: scrollTargets?.experienceRef },
-    { content: "About", active: false, ref: scrollTargets?.heroRef },
-    { content: "Project", active: false, ref: scrollTargets?.aboutRef },
-    { content: "Contact", active: false, ref: scrollTargets?.textRef },
+    {
+      content: "Work Experience",
+      active: false,
+      ref: scrollTargets?.experienceRef,
+    },
+    { content: "About", active: false, ref: scrollTargets?.aboutRef },
+    { content: "Project", active: false, ref: scrollTargets?.projectRef },
+    { content: "Contact", active: false, ref: scrollTargets?.aboutRef },
   ]);
 
   const changeActive = (index) => {
@@ -89,8 +93,9 @@ export default function NavBar({ scrollTargets }) {
       </button>
 
       <section
-        className={`bg-[#171717] p-5 w-full min-h-50 absolute left-0 top-[110%] rounded-3xl flex-col items-center gap-5 lg:hidden z-10 ${showMenu ? "flex" : "hidden"
-          }`}
+        className={`bg-[#171717] p-5 w-full min-h-50 absolute left-0 top-[110%] rounded-3xl flex-col items-center gap-5 lg:hidden z-10 ${
+          showMenu ? "flex" : "hidden"
+        }`}
       >
         {menuList.map((item, index) => (
           <MenuItem
@@ -108,8 +113,9 @@ export default function NavBar({ scrollTargets }) {
 function MenuItem({ content, active, changeActive }) {
   return (
     <button
-      className={`w-full h-16.5 font-[600] text-[15px] rounded-[33px] duration-200 cursor-pointer ${active ? "bg-[#FD853A]" : "hover:bg-[#232323]"}`
-      }
+      className={`w-full h-16.5 font-[600] text-[15px] rounded-[33px] duration-200 cursor-pointer ${
+        active ? "bg-[#FD853A]" : "hover:bg-[#232323]"
+      }`}
       onClick={changeActive}
     >
       {content}

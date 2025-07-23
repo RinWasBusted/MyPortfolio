@@ -1,7 +1,43 @@
 import { useState } from "react";
 
-export default function MyProjects() {
+export default function Footer({ scrollTargets }) {
   const [emailInput, setEmailInput] = useState("");
+
+  // Debug: Kiểm tra scrollTargets được truyền vào
+
+  const navList = [
+    {
+      content: "Home",
+      ref: scrollTargets?.heroRef,
+    },
+    {
+      content: "Service",
+      ref: scrollTargets?.serviceRef,
+    },
+
+    {
+      content: "Work Experience",
+      ref: scrollTargets?.experienceRef,
+    },
+    {
+      content: "About",
+      ref: scrollTargets?.aboutRef,
+    },
+    {
+      content: "Project",
+      ref: scrollTargets?.projectRef,
+    },
+  ];
+
+  function scrollTo(ref) {
+    if (!ref || !ref.current) {
+      console.error("Ref is null or undefined");
+      return;
+    }
+    ref.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
 
   function handleEmailSubmit(e) {
     e.preventDefault();
@@ -63,11 +99,15 @@ export default function MyProjects() {
           <h3 className="text-[#FD853A] font-[600] text-[20px] mb-5">
             Navigation
           </h3>
-          <p className="py-2 cursor-pointer hover:text-[#FD853A]">Home</p>
-          <p className="py-2 cursor-pointer hover:text-[#FD853A]">About us</p>
-          <p className="py-2 cursor-pointer hover:text-[#FD853A]">Service</p>
-          <p className="py-2 cursor-pointer hover:text-[#FD853A]">Resume</p>
-          <p className="py-2 cursor-pointer hover:text-[#FD853A]">Project</p>
+          {navList.map((item, index) => (
+            <p
+              className="py-2 cursor-pointer hover:text-[#FD853A]"
+              key={index}
+              onClick={() => scrollTo(item.ref)}
+            >
+              {item.content}
+            </p>
+          ))}
         </nav>
         <article className="flex-1/10">
           <h3 className="text-[#FD853A] font-[600] text-[20px] mb-5">

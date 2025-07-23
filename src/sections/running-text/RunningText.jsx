@@ -15,10 +15,10 @@ export default function RunningText() {
   }, []);
 
   return (
-    <section className="w-[3000px] h-36  flex justify-center items-center overflow-hidden relative">
+    <section className="w-full h-36 flex justify-center items-center  relative">
       <div className="h-full bg-[#FB6514] w-[100vw]  absolute  rounded-tl-4xl rounded-br-4xl"></div>
       <Marquee
-        className="bg-white !w-[3000px] h-[50%] rotate-[-3deg] flex items-center "
+        className="bg-white w-[150vw] h-[50%] rotate-[-2.5deg] flex items-center "
         autoFill={true}
       >
         {textList.map((item, index) => (

@@ -6,23 +6,25 @@ import MyServices from "../sections/my-services/MyServices";
 import MyWorkExperience from "../sections/my-work-experience/MyWorkExperience";
 import WhyHireMe from "../sections/why-hire-me/WhyHireMe";
 import RunningText from "../sections/running-text/RunningText";
+import MyProject from "../sections/my-project/MyProject";
+import "./App.css";
 
 function App() {
-
   const heroRef = useRef();
   const serviceRef = useRef();
   const experienceRef = useRef();
   const aboutRef = useRef();
-  const textRef = useRef();
+  const projectRef = useRef();
 
   return (
     <MainLayout
+      className="main_layout"
       scrollTargets={{
         heroRef,
         serviceRef,
         experienceRef,
         aboutRef,
-        textRef,
+        projectRef,
       }}
     >
       <section ref={heroRef}>
@@ -37,8 +39,11 @@ function App() {
       <section ref={aboutRef}>
         <WhyHireMe />
       </section>
-      <section ref={textRef}>
+      <section>
         <RunningText />
+      </section>
+      <section ref={projectRef}>
+        <MyProject></MyProject>
       </section>
     </MainLayout>
   );
