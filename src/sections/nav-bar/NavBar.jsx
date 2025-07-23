@@ -17,16 +17,16 @@ export default function NavBar({ scrollTargets }) {
     },
     { content: "About", active: false, ref: scrollTargets?.aboutRef },
     { content: "Project", active: false, ref: scrollTargets?.projectRef },
-    { content: "Contact", active: false, ref: scrollTargets?.aboutRef },
+    { content: "Contact", active: false, ref: scrollTargets?.contactRef },
   ]);
 
   const changeActive = (index) => {
-    setMenuList((prev) =>
-      prev.map((item, i) => ({
-        ...item,
-        active: i === index,
-      }))
-    );
+    // setMenuList((prev) =>
+    //   prev.map((item, i) => ({
+    //     ...item,
+    //     active: i === index,
+    //   }))
+    // );
     if (menuList[index].ref) {
       scrollTo(menuList[index].ref);
     }
