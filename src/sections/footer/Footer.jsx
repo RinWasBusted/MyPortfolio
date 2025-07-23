@@ -45,7 +45,10 @@ export default function Footer({ scrollTargets }) {
   }
 
   return (
-    <footer className="bg-[#272727] w-full text-[#FCFCFD] py-6 rounded-t-3xl flex flex-col items-center px-10 ">
+    <footer
+      className="bg-[#272727] w-full text-[#FCFCFD] py-6 rounded-t-3xl flex flex-col items-center px-10 "
+      ref={scrollTargets?.contactRef}
+    >
       <section className="w-full max-w-[1298px] h-45 flex flex-col md:flex-row justify-between items-center border-b-1 border-[#475467] pb-10">
         <h2 className="text-[30px] sm:text-[50px] lg:text-[64px] font-[600]">
           Lets Connect there
