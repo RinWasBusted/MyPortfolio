@@ -5,7 +5,7 @@ export default function WhyHireMe() {
   return (
     <section className="bg-[#F2F4F7] w-full flex justify-center items-center">
       <div className="w-full max-w-[1298px] h-full flex flex-col lg:flex-row  justify-center items-center py-25 px-10 md:px-15">
-        <figure className="h-full max-w-150 flex relative group mb-10">
+        <figure className="h-auto max-w-150 flex relative group mb-10">
           <img
             src={woman_pointing_deco}
             alt="woman_pointing_deco"

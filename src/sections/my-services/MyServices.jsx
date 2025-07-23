@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import background from "../../assets/MyServicesBackground.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import DotButton from "./DotNav/DotButton.jsx";
-import useDotButton from "./DotNav/useDotButton.jsx";
+import DotButton from "./dot-nav/DotButton.jsx";
+import useDotButton from "./dot-nav/useDotButton.jsx";
 import "./carousel.css";
 
 export default function MyServices() {
