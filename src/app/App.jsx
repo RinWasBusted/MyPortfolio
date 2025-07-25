@@ -12,9 +12,10 @@ import MyProject from "../sections/portfolio/my-project/MyProject";
 import "./App.css";
 
 import HeroBannerForm from "../sections/admin-page/hero-banner-form/HeroBannerForm";
+import LoginBoard from "../sections/admin-page/login-board/LoginBoard";
 
 function App() {
-  const [currentLayout, setCurrentLayout] = useState("portfolio");
+  const [currentLayout, setCurrentLayout] = useState("admin");
 
   function handleChangeLayout(layoutName) {
     setCurrentLayout(layoutName);
@@ -64,6 +65,7 @@ function App() {
 
       : <AdminLayout handleChangeLayout={handleChangeLayout}>
         <HeroBannerForm></HeroBannerForm>
+        {/* <LoginBoard></LoginBoard> */}
       </AdminLayout>
 
 
