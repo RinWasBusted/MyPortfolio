@@ -1,5 +1,5 @@
-import NavBar from "../sections/nav-bar/NavBar";
-import Footer from "../sections/footer/Footer";
+import NavBar from "../sections/portfolio/nav-bar/NavBar";
+import Footer from "../sections/portfolio/footer/Footer";
 
 function MainLayout({ children, scrollTargets }) {
   return (

@@ -1,5 +1,5 @@
-import woman_pointing_deco from "../../assets/woman-pointing-deco.png";
-import woman_pointing from "../../assets/woman-pointing.png";
+import woman_pointing_deco from "../../../assets/woman-pointing-deco.png";
+import woman_pointing from "../../../assets/woman-pointing.png";
 
 export default function WhyHireMe() {
   return (

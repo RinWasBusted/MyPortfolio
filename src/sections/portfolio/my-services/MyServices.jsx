@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import background from "../../assets/MyServicesBackground.png";
+import background from "../../../assets/MyServicesBackground.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import DotButton from "./dot-nav/DotButton.jsx";
