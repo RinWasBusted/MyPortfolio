@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import smoothscroll from "smoothscroll-polyfill";
 import MainLayout from "../layout/MainLayout";
 import AdminLayout from "../layout/AdminLayout";
+import LoginBoard from '../sections/admin-page/login-board/LoginBoard'
 
 import HeroBanner from "../sections/portfolio/hero-banner/HeroBanner";
 import MyServices from "../sections/portfolio/my-services/MyServices";
@@ -11,19 +13,14 @@ import RunningText from "../sections/portfolio/running-text/RunningText";
 import MyProject from "../sections/portfolio/my-project/MyProject";
 import "./App.css";
 
-import HeroBannerForm from "../sections/admin-page/hero-banner-form/HeroBannerForm";
-import LoginBoard from "../sections/admin-page/login-board/LoginBoard";
 
 function App() {
-  const [currentLayout, setCurrentLayout] = useState("admin");
 
-  function handleChangeLayout(layoutName) {
-    setCurrentLayout(layoutName);
-  }
-
+  // ~~~~~~~~~~~~~~~~~~SMOOTH SCROLL~~~~~~~~~~~~~~~~~~~~~~~~~
   smoothscroll.polyfill();
   window.__forceSmoothScrollPolyfill__ = true;
 
+  // ~~~~~~~~~~~~~~~~~~~~REFS~~~~~~~~~~~~~~~~~~~~~~~~~~
   const heroRef = useRef();
   const serviceRef = useRef();
   const experienceRef = useRef();
@@ -31,46 +28,55 @@ function App() {
   const projectRef = useRef();
   const contactRef = useRef();
 
+  // ~~~~~~~~~~~~~~~~~~~~ROUTER CONFIG~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const PageRouter = createBrowserRouter([
+    {
+      path: '/',
+      element: <MainLayout
+        className="main_layout"
+        scrollTargets={{
+          heroRef,
+          serviceRef,
+          experienceRef,
+          aboutRef,
+          projectRef,
+          contactRef,
+        }}
+      >
+        <section ref={heroRef}>
+          <HeroBanner />
+        </section>
+        <section ref={serviceRef}>
+          <MyServices />
+        </section>
+        <section ref={experienceRef}>
+          <MyWorkExperience />
+        </section>
+        <section ref={aboutRef}>
+          <WhyHireMe />
+        </section>
+        <section>
+          <RunningText />
+        </section>
+        <section ref={projectRef}>
+          <MyProject></MyProject>
+        </section>
+      </MainLayout>,
+      errorElement: <div className="text-[100px] text-red-400">Not Found 404</div>,
+    },
+    {
+      path: '/admin',
+      element: <AdminLayout></AdminLayout>,
+    },
+    {
+      path: '/admin/login',
+      element: <LoginBoard></LoginBoard>
+    }
+  ]);
+
+
   return (
-    currentLayout == "portfolio" ? <MainLayout
-      className="main_layout"
-      scrollTargets={{
-        heroRef,
-        serviceRef,
-        experienceRef,
-        aboutRef,
-        projectRef,
-        contactRef,
-      }}
-    >
-      <section ref={heroRef}>
-        <HeroBanner />
-      </section>
-      <section ref={serviceRef}>
-        <MyServices />
-      </section>
-      <section ref={experienceRef}>
-        <MyWorkExperience />
-      </section>
-      <section ref={aboutRef}>
-        <WhyHireMe />
-      </section>
-      <section>
-        <RunningText />
-      </section>
-      <section ref={projectRef}>
-        <MyProject></MyProject>
-      </section>
-    </MainLayout>
-
-      : <AdminLayout handleChangeLayout={handleChangeLayout}>
-        <HeroBannerForm></HeroBannerForm>
-        {/* <LoginBoard></LoginBoard> */}
-      </AdminLayout>
-
-
-
-
+    <RouterProvider router={PageRouter}></RouterProvider>
   );
 }
 

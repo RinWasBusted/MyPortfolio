@@ -47,13 +47,31 @@ export default function HeroBannerForm() {
     }
 
     return (
-        <section className=" bg-[#2C2C2C] w-[50%] min-h-50 rounded-3xl flex flex-col items-center border-white border-1 p-5 ">
+        <section className=" bg-[#2C2C2C] w-[50%] min-h-50 flex flex-col p-5 ">
             <h2 className="text-[30px] font-[600] mb-5">Hero Banner</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Job title" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Left article" value={leftArticle} onChange={(e) => setLeftArticle(e.target.value)} />
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Right article" value={rightArticle} onChange={(e) => setRightArticle(e.target.value)} />
+                <label htmlFor="" className='w-full'>
+                    Name
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Job title
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Job title" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Left article
+                    <textarea type="text" className="bg-white w-full min-h-10 text-black px-5 rounded-[5px]" placeholder="Left article" value={leftArticle} onChange={(e) => setLeftArticle(e.target.value)} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Right article
+                    <textarea type="text" className="bg-white w-full min-h-10 text-black px-5 rounded-[5px]" placeholder="Right article" value={rightArticle} onChange={(e) => setRightArticle(e.target.value)} />
+                </label>
+
+
+
                 <label className="flex items-center gap-2">
                     <h3>Your photo:</h3>
                     <input
