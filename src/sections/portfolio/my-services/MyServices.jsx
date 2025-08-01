@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import background from "../../../assets/MyServicesBackground.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -29,38 +29,47 @@ export default function MyServices() {
     emblaApi,
     onNavButtonClick
   );
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SERVICES DESCRIPTION~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GET DATA~~~~~~~~~~~~~~~~~~~~~~~~
 
-  const servicesDescription =
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, sequi illum dignissimos tempore voluptas qui.";
+  const [description, setDescription] = useState('');
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('my-service-data'));
+    if (data) {
+      setDescription(data.description);
+      setCards(data.cards);
+    }
+  }, [])
+
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~CARD LIST~~~~~~~~~~~~~~~~~~~~~
-  const servicesList = [
-    {
-      service: "UI/UX Design",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-    {
-      service: "HTML, CSS, JS",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-    {
-      service: "Tailwind",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-    {
-      service: "ReactJS",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-    {
-      service: "Github",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-    {
-      service: "Vite",
-      pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
-    },
-  ];
+  // const servicesList = [
+  //   {
+  //     service: "UI/UX Design",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  //   {
+  //     service: "HTML, CSS, JS",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  //   {
+  //     service: "Tailwind",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  //   {
+  //     service: "ReactJS",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  //   {
+  //     service: "Github",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  //   {
+  //     service: "Vite",
+  //     pic: "https://d1le3ohiuslpz1.cloudfront.net/skillcrush/wp-content/uploads/2022/05/15-essential-front-end-developer-skills1.png",
+  //   },
+  // ];
 
   return (
     <div
@@ -72,7 +81,7 @@ export default function MyServices() {
           <h3 className="text-[48px] font-[700] flex gap-3">
             My <p className="text-[#FD853A]"> Services</p>
           </h3>
-          <p className="text-[20px] md:w-[50%] w-full">{servicesDescription}</p>
+          <p className="text-[20px] md:w-[50%] w-full">{description}</p>
         </article>
 
         <main
@@ -80,9 +89,9 @@ export default function MyServices() {
           ref={emblaRef}
         >
           <div className="embla__container ">
-            {servicesList.map((item, index) => (
+            {cards.map((card, index) => (
               <div key={index} className="embla__slide">
-                <ItemCard service={item.service} pic={item.pic}></ItemCard>
+                <ItemCard service={card.name} pic={card.pic}></ItemCard>
               </div>
             ))}
           </div>

@@ -47,7 +47,7 @@ export default function HeroBannerForm() {
     }
 
     return (
-        <section className=" bg-[#2C2C2C] w-[50%] min-h-50 flex flex-col p-5 ">
+        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col py-20 px-40 ">
             <h2 className="text-[30px] font-[600] mb-5">Hero Banner</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
                 <label htmlFor="" className='w-full'>

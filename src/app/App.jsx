@@ -9,7 +9,7 @@ import HeroBanner from "../sections/portfolio/hero-banner/HeroBanner";
 import MyServices from "../sections/portfolio/my-services/MyServices";
 import MyWorkExperience from "../sections/portfolio/my-work-experience/MyWorkExperience";
 import WhyHireMe from "../sections/portfolio/why-hire-me/WhyHireMe";
-import RunningText from "../sections/portfolio/running-text/RunningText";
+import Marquee from "../sections/portfolio/marquee/Marquee";
 import MyProject from "../sections/portfolio/my-project/MyProject";
 import "./App.css";
 
@@ -56,7 +56,7 @@ function App() {
           <WhyHireMe />
         </section>
         <section>
-          <RunningText />
+          <Marquee />
         </section>
         <section ref={projectRef}>
           <MyProject></MyProject>
