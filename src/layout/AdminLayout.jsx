@@ -32,7 +32,7 @@ export default function AdminLayout() {
 
             case 'WhyHireMeForm': setCurrentBoard(<WhyHireMeForm></WhyHireMeForm>); break;
 
-            case 'MarqueeForm': setCurrentBoard(<MarqueeForm></MarqueeForm>); break;
+            // case 'MarqueeForm': setCurrentBoard(<MarqueeForm></MarqueeForm>); break;
 
             case 'MyProjectForm': setCurrentBoard(<MyProjectForm></MyProjectForm>); break;
         };

@@ -22,21 +22,21 @@ export default function SideBar({ handleChangeBoard }) {
             board: "MyWorkExperienceForm",
         },
         {
-            content: "About",
+            content: "Why hire me",
             board: "WhyHireMeForm",
         },
-        {
-            content: "Marquee",
-            board: "MarqueeForm",
-        },
+        // {
+        //     content: "Marquee",
+        //     board: "MarqueeForm",
+        // },
         {
             content: "My project",
             board: "MyProjectForm",
         },
-        {
-            content: "Footer",
-            board: "FooterForm",
-        },
+        // {
+        //     content: "Footer",
+        //     board: "FooterForm",
+        // },
     ];
 
     return (
