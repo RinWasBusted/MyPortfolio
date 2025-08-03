@@ -4,6 +4,8 @@ import smoothscroll from "smoothscroll-polyfill";
 import MainLayout from "../layout/MainLayout";
 import AdminLayout from "../layout/AdminLayout";
 import LoginBoard from '../sections/admin-page/login-board/LoginBoard'
+import LandingLayout from "../layout/LandingLayout";
+import NotFound404Layout from "../layout/NotFound404Layout";
 
 import HeroBanner from "../sections/portfolio/hero-banner/HeroBanner";
 import MyServices from "../sections/portfolio/my-services/MyServices";
@@ -30,6 +32,11 @@ function App() {
 
   // ~~~~~~~~~~~~~~~~~~~~ROUTER CONFIG~~~~~~~~~~~~~~~~~~~~~~~~~~
   const PageRouter = createBrowserRouter([
+    {
+      path: '/',
+      element: <LandingLayout></LandingLayout>,
+      errorElement: < NotFound404Layout ></NotFound404Layout >,
+    },
     {
       path: '/my-portfolio',
       element: <MainLayout
@@ -62,7 +69,6 @@ function App() {
           <MyProject></MyProject>
         </section>
       </MainLayout>,
-      errorElement: <div className="text-[100px] text-red-400">Not Found 404</div>,
     },
     {
       path: '/admin',
