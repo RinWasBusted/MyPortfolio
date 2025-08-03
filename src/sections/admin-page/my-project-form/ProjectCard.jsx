@@ -11,7 +11,7 @@ export default function ProjectCard({ index, register, control, remove }) {
     });
 
     return (
-        <li className='w-full border-2 border-[#444444] p-10 rounded-[5px] flex flex-col gap-5'>
+        <li className='w-full border-2 border-[#444444] p-5 sm:p-10 rounded-[5px] flex flex-col gap-5'>
             <div className="w-full flex justify-between">
                 <h3 className="text-[20px] font-[600]">Project {index + 1}</h3>
 
@@ -44,7 +44,7 @@ export default function ProjectCard({ index, register, control, remove }) {
             <section className="flex flex-col w-full gap-3">
                 <h3>Tags:</h3>
 
-                <div className="flex gap-5">
+                <div className="flex sm:flex-row flex-col gap-5">
                     <input type="text" className="outline-none bg-white border-black border-2 rounded-[5px] text-black px-5 py-1" placeholder="Tag name" value={tagValue} onChange={(e) => setTagValue(e.target.value)} />
                     <button type="button" className="bg-[#444444] px-3 py-1 rounded-[5px] cursor-pointer duration hover:bg-white/5" onClick={() => {
                         if (tagValue.trim()) {

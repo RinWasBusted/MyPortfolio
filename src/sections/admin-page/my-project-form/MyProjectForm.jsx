@@ -50,7 +50,7 @@ export default function MyProjectForm() {
 
 
     return (
-        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col py-20 px-40 ">
+        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col ">
             <h2 className="text-[30px] font-[600] mb-5">My project</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" noValidate>

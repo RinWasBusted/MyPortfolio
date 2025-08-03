@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 
@@ -12,6 +12,13 @@ export default function ProfileForm() {
             avatar: null,
             phoneNumber: '0819124125',
             email: "thaian0609asd@gmail.com",
+            socialMedia: {
+                facebook: '',
+                youtube: '',
+                whatsapp: '',
+                instagram: '',
+                twitter: '',
+            }
         }
     });
 
@@ -20,7 +27,7 @@ export default function ProfileForm() {
     }
 
     return (
-        <section className=" w-full min-h-100 py-20 px-40">
+        <section className=" w-full min-h-100 ">
             <h2 className="text-[30px] font-[600] mb-5">Profile</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="" className='w-full'>
@@ -74,6 +81,31 @@ export default function ProfileForm() {
                 <label htmlFor="" className='w-full'>
                     Email
                     <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Email" {...register('email')} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Facebook
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Facebook" {...register('socialMedia.facebook')} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Youtube
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Youtube" {...register('socialMedia.youtube')} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Whatsapp
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Whatsapp" {...register('socialMedia.whatsapp')} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Instagram
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Instagram" {...register('socialMedia.instagram')} />
+                </label>
+
+                <label htmlFor="" className='w-full'>
+                    Twitter
+                    <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Twitter" {...register('socialMedia.twitter')} />
                 </label>
 
                 <button type="submit" className="cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Save</button>

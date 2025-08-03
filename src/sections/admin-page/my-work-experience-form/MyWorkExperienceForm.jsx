@@ -51,7 +51,7 @@ export default function MyWorkExperienceForm() {
     };
 
     return (
-        <section className="px-40 py-20 w-full ">
+        <section className=" w-full ">
             <h2 className="text-[30px] font-[600] mb-5">My work experience</h2>
 
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>

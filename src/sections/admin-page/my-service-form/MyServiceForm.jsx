@@ -35,7 +35,7 @@ export default function MyServiceForm() {
     };
 
     return (
-        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col py-20 px-40 ">
+        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col  ">
             <h2 className="text-[30px] font-[600] mb-5">My Service</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
                 <label htmlFor="" className='w-full'>
@@ -84,7 +84,7 @@ function Card({ card, handleChange, handleDeleteCard }) {
             </label>
 
             <label className="flex items-center gap-2">
-                <h3>Card picture:</h3>
+                <h3 className='text-[12px] sm:text-[15px]'>Card picture:</h3>
                 <input
                     type="file"
                     accept="image/*"
@@ -93,7 +93,7 @@ function Card({ card, handleChange, handleDeleteCard }) {
                     onChange={(e) => handleSaveCardPic(e)}
                 />
                 <div
-                    className="bg-white px-2 cursor-pointer rounded-[5px] text-black border-2"
+                    className="bg-white text-[12px] sm:text-[15px] px-2 cursor-pointer rounded-[5px] text-black border-2"
                 >
                     {cardPic === null ? "Choose" : "Image selected"}
                 </div>

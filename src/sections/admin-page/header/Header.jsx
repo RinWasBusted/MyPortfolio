@@ -12,11 +12,11 @@ export default function Header() {
     }, [])
 
     return (<header className="fixed top-0 w-[100vw] h-14 bg-[#2C2C2C] border-[#444444] text-white border-b-1 flex justify-end items-center px-10" >
-        <Link className="h-full flex items-center cursor-pointer border-l-1 border-r-1 border-[#444444] px-5 hover:bg-white/5 duration-100" to={'/'}>
+        <Link className="h-full flex items-center cursor-pointer border-l-1 border-r-1 border-[#444444] px-5 hover:bg-white/5 duration-100" to={'/my-portfolio'}>
             <h2>Portfolio Page</h2>
         </Link>
 
-        <div className=" h-14 min-w-50 flex gap-3 items-center border-l-1 border-[#444444] pl-5 ">
+        <div className="hidden h-14 min-w-50 sm:flex gap-3 items-center border-l-1 border-[#444444] pl-5 ">
             <figure className="h-10 w-10 rounded-[50%] overflow-hidden cursor-pointer">
                 <img src={avatar} alt="logo" />
             </figure>

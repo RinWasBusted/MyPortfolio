@@ -31,7 +31,7 @@ function App() {
   // ~~~~~~~~~~~~~~~~~~~~ROUTER CONFIG~~~~~~~~~~~~~~~~~~~~~~~~~~
   const PageRouter = createBrowserRouter([
     {
-      path: '/',
+      path: '/my-portfolio',
       element: <MainLayout
         className="main_layout"
         scrollTargets={{
@@ -69,7 +69,7 @@ function App() {
       element: <AdminLayout></AdminLayout>,
     },
     {
-      path: '/admin/login',
+      path: '/login',
       element: <LoginBoard></LoginBoard>
     }
   ]);
