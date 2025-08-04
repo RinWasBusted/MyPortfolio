@@ -15,6 +15,10 @@ import Marquee from "../sections/portfolio/marquee/Marquee";
 import MyProject from "../sections/portfolio/my-project/MyProject";
 import "./App.css";
 
+import LandingHeroBanner from '../sections/landing/hero-banner/HeroBanner';
+import Features from "../sections/landing/features/Features";
+import SectionPreview from "../sections/landing/section-preview/SectionPreview";
+
 
 function App() {
 
@@ -34,7 +38,20 @@ function App() {
   const PageRouter = createBrowserRouter([
     {
       path: '/',
-      element: <LandingLayout></LandingLayout>,
+      element:
+        <LandingLayout>
+          <section>
+            <LandingHeroBanner></LandingHeroBanner>
+          </section>
+
+          <section>
+            <Features></Features>
+          </section>
+
+          <section>
+            <SectionPreview></SectionPreview>
+          </section>
+        </LandingLayout>,
       errorElement: < NotFound404Layout ></NotFound404Layout >,
     },
     {
