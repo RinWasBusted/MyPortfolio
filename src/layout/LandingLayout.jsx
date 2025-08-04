@@ -3,7 +3,7 @@ import LandingFooter from "../sections/landing/landing-footer/LandingFooter"
 
 export default function LandingLayout({ children }) {
     return (
-        <div className="w-full h-full flex flex-col items-center bg-[#2B2B2B]">
+        <div className="w-full h-full min-h-[100vh] justify-between flex flex-col items-center bg-[#2B2B2B]">
             <LandingHeader></LandingHeader>
 
             <main className="w-full max-w-[1080px] pt-25 h-full flex  flex-col items-center main_layout">

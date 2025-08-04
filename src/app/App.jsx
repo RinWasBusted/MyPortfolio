@@ -52,7 +52,12 @@ function App() {
             <SectionPreview></SectionPreview>
           </section>
         </LandingLayout>,
-      errorElement: < NotFound404Layout ></NotFound404Layout >,
+      errorElement: <LandingLayout>
+        <section>
+          < NotFound404Layout ></NotFound404Layout >
+        </section>
+
+      </LandingLayout>,
     },
     {
       path: '/my-portfolio',
