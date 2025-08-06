@@ -18,25 +18,25 @@ export default function ExpCard({ exp, handleChange, handleDeleteExp }) {
     }, [title, subtitle, skill, desc, exp.id])
 
     return (
-        <li className='w-full border-2 border-[#444444] p-10 rounded-[5px] flex flex-col gap-5'>
+        <li className='w-full border-1 border-[#343C6A]  bg-white shadow-xl p-10 rounded-[5px] flex flex-col gap-5'>
             <label htmlFor="" className='w-full'>
                 Title
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Title" onChange={(e) => setTitle(e.target.value)} value={title} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]" placeholder="Title" onChange={(e) => setTitle(e.target.value)} value={title} />
             </label>
 
             <label htmlFor="" className='w-full'>
                 Subtitle
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Subtitle" onChange={(e) => setSubtitle(e.target.value)} value={subtitle} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]" placeholder="Subtitle" onChange={(e) => setSubtitle(e.target.value)} value={subtitle} />
             </label>
 
             <label htmlFor="" className='w-full'>
                 Skill
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Skill" onChange={(e) => setSkill(e.target.value)} value={skill} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]" placeholder="Skill" onChange={(e) => setSkill(e.target.value)} value={skill} />
             </label>
 
             <label htmlFor="" className='w-full'>
                 Description
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Description" onChange={(e) => setDesc(e.target.value)} value={desc} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]" placeholder="Description" onChange={(e) => setDesc(e.target.value)} value={desc} />
             </label>
 
             <div className='cursor-pointer bg-red-600 text-black px-3 w-fit rounded-[5px] text-[20px]' onClick={() => handleDeleteExp(exp.id)}>Delete card</div>

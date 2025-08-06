@@ -29,17 +29,17 @@ export default function WhyHireMeForm() {
     }
 
     return (
-        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col ">
+        <section className=" min-h-50 flex flex-col ">
             <h2 className="text-[30px] font-[600] mb-5">Why hire me</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
                 <label htmlFor="" className='w-full'>
                     Content
-                    <textarea type="text" className="bg-white w-full min-h-10 h-fit text-black px-5 rounded-[5px]" placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
+                    <textarea type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A]  w-full min-h-10 h-fit text-black px-5 rounded-[5px]" placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
                 </label>
 
                 <label htmlFor="" className='w-full'>
                     Project count
-                    <input type="number" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Number of project" value={projectCount} onChange={(e) => setProjectCount(e.target.value)} />
+                    <input type="number" className="bg-[#F5F7FA] border-1 border-[#343C6A]  w-full h-10 text-black px-5 rounded-[5px]" placeholder="Number of project" value={projectCount} onChange={(e) => setProjectCount(e.target.value)} />
                 </label>
 
                 <label className="flex items-center gap-2">
@@ -52,15 +52,15 @@ export default function WhyHireMeForm() {
                         onChange={(e) => handleSavePic(e)}
                     />
                     <div
-                        className="bg-white px-2 cursor-pointer rounded-[5px] text-black border-2"
+                        className="bg-white px-2 cursor-pointer rounded-[5px] text-black border-2 border-[#343C6A] "
                     >
                         {pic === "Choose" ? "Choose" : "Image selected"}
                     </div>
                 </label>
                 {pic !== "Choose" && (
-                    <img src={pic} alt="Picture" className="w-32 h-32 object-cover rounded-[5px] border-2 border-white" />
+                    <img src={pic} alt="Picture" className="w-32 h-32 object-cover rounded-[5px] border-2 border-[#343C6A] " />
                 )}
-                <button type="submit" className="cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Save</button>
+                <button type="submit" className="cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px] border-1 border-[#343C6A] ">Save</button>
             </form>
         </section >
     )

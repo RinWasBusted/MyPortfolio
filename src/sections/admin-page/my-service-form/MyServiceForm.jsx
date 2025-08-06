@@ -35,12 +35,12 @@ export default function MyServiceForm() {
     };
 
     return (
-        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col  ">
+        <section className=" min-h-50 flex flex-col  ">
             <h2 className="text-[30px] font-[600] mb-5">My Service</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
                 <label htmlFor="" className='w-full'>
                     Description
-                    <textarea type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <textarea type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px] border-1 border-[#343C6A] " placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
                 <ul className='flex flex-col gap-10 w-full'>
@@ -77,10 +77,10 @@ function Card({ card, handleChange, handleDeleteCard }) {
     }
 
     return (
-        <li className='w-full border-2 border-[#444444] p-10 rounded-[5px] flex flex-col gap-5'>
+        <li className='w-full border-1 border-[#343C6A]  bg-white p-10 rounded-[5px] flex flex-col gap-5 shadow-lg'>
             <label htmlFor="" className='w-full'>
                 Card name
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Card name" onChange={(e) => setCardName(e.target.value)} value={cardName} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]" placeholder="Card name" onChange={(e) => setCardName(e.target.value)} value={cardName} />
             </label>
 
             <label className="flex items-center gap-2">
@@ -99,7 +99,7 @@ function Card({ card, handleChange, handleDeleteCard }) {
                 </div>
             </label>
             {cardPic !== null && (
-                <img src={cardPic} alt="preview" className="w-32 h-32 object-cover rounded-[5px] border-2 border-white" />
+                <img src={cardPic} alt="preview" className="w-32 h-32 object-cover rounded-[5px]  border-1 border-[#343C6A] " />
             )}
 
             <div className='cursor-pointer bg-red-600 text-black px-3 w-fit rounded-[5px] text-[20px]' onClick={() => handleDeleteCard(card.id)}>Delete card</div>

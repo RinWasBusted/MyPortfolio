@@ -50,7 +50,7 @@ export default function MyProjectForm() {
 
 
     return (
-        <section className=" bg-[#2C2C2C] min-h-50 flex flex-col ">
+        <section className=" min-h-50 flex flex-col ">
             <h2 className="text-[30px] font-[600] mb-5">My project</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" noValidate>
@@ -75,10 +75,10 @@ export default function MyProjectForm() {
                         tags: [],
                         pic: null,
                         link: '',
-                    },)} className="cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Add project</button>
+                    },)} className=" border-1 border-[#343C6A]cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Add project</button>
                 </ul>
 
-                <button type="submit" className="cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Save</button>
+                <button type="submit" className=" border-1 border-[#343C6A] cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Save</button>
             </form>
         </section >
     )

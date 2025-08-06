@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import smoothscroll from "smoothscroll-polyfill";
 import MainLayout from "../layout/MainLayout";
 import AdminLayout from "../layout/AdminLayout";
-import LoginBoard from '../sections/admin-page/login-board/LoginBoard'
+import LoginRegisterLayout from "../layout/LoginRegisterLayout";
 import LandingLayout from "../layout/LandingLayout";
 import NotFound404Layout from "../layout/NotFound404Layout";
 
@@ -18,6 +18,9 @@ import "./App.css";
 import LandingHeroBanner from '../sections/landing/hero-banner/HeroBanner';
 import Features from "../sections/landing/features/Features";
 import SectionPreview from "../sections/landing/section-preview/SectionPreview";
+
+import LoginBoard from "../sections/login-register-page/LoginBoard";
+import RegisterBoard from "../sections/login-register-page/RegisterBoard";
 
 
 function App() {
@@ -98,8 +101,16 @@ function App() {
     },
     {
       path: '/login',
-      element: <LoginBoard></LoginBoard>
-    }
+      element: <LoginRegisterLayout>
+        <LoginBoard></LoginBoard>
+      </LoginRegisterLayout>
+    },
+    {
+      path: '/register',
+      element: <LoginRegisterLayout>
+        <RegisterBoard></RegisterBoard>
+      </LoginRegisterLayout>
+    },
   ]);
 
 

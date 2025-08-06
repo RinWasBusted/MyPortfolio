@@ -17,7 +17,7 @@ export default function AdminLayout() {
 
     useEffect(() => {
         setCurrentBoard(<ProfileForm></ProfileForm>);
-        if (!loggedin) navigate('/admin/login')
+        if (!loggedin) navigate('/login')
     }, [navigate, loggedin]);
 
     function handleChangeBoard(board) {
@@ -38,10 +38,10 @@ export default function AdminLayout() {
         };
     };
 
-    return <div className="w-full min-h-[100vh] mt-14 flex flex-wrap bg-[#2C2C2C] text-white justify-end ">
+    return <div className="w-full min-h-[100vh] mt-14 flex flex-wrap bg-[#F5F7FA] text-white justify-end ">
         <Header ></Header>
         <SideBar handleChangeBoard={handleChangeBoard}></SideBar>
-        <main className="h-full w-full lg:w-4/5 bg-[#2C2C2C] py-10 px-10 sm:px-20 lg:py-20 lg:px-40">
+        <main className="h-full w-full lg:w-4/5 bg-[#F5F7FA] py-10 px-10 sm:px-20 lg:py-20 lg:px-40 text-[#343C6A]">
             {currentBoard}
         </main>
     </div>;

@@ -1,4 +1,5 @@
 import portfolioPic from '../../../../src/assets/Portfolio - Product Designer Portfolio Website (Community).png'
+import { Link } from 'react-router-dom'
 
 export default function HeroBanner() {
     return (
@@ -8,7 +9,7 @@ export default function HeroBanner() {
 
                 <p className='text-white text-[13px] sm:text-[18px] opacity-40 font-[300] text-center lg:text-left'>Showcase your best work, highlight your unique skills, and land your dream job faster than ever. Our intuitive tools make the process effortless, so you can focus on what matters: your creativity.</p>
 
-                <button type="button" className='bg-[#F8D57E] rounded-[15px] text-[#333333] h-12 w-45 text-[18px] cursor-pointer border-white hover:border-3'>Get started</button>
+                <a href='/admin' target='_blank' className='bg-[#F8D57E] rounded-[15px] text-[#333333] h-12 w-45 text-[18px] cursor-pointer border-white hover:border-3 flex justify-center items-center'>Get started</a>
             </section>
 
             <figure className='w-full lg:w-1/2 shrink-0 rounded-[20px] overflow-hidden'>

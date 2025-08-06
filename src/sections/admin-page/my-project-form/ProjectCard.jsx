@@ -11,7 +11,7 @@ export default function ProjectCard({ index, register, control, remove }) {
     });
 
     return (
-        <li className='w-full border-2 border-[#444444] p-5 sm:p-10 rounded-[5px] flex flex-col gap-5'>
+        <li className='w-full border-1 border-[#343C6A] shadow-2xs bg-white p-5 sm:p-10 rounded-[5px] flex flex-col gap-5'>
             <div className="w-full flex justify-between">
                 <h3 className="text-[20px] font-[600]">Project {index + 1}</h3>
 
@@ -22,7 +22,7 @@ export default function ProjectCard({ index, register, control, remove }) {
                 Title
                 <input
                     type="text"
-                    className="bg-white w-full h-10 text-black px-5 rounded-[5px]"
+                    className="bg-[#F5F7FA] border-1 border-[#343C6A] w-full h-10 text-black px-5 rounded-[5px]"
                     placeholder="Title"
                     {...register(`projects.${index}.title`)}
                 />
@@ -30,12 +30,12 @@ export default function ProjectCard({ index, register, control, remove }) {
 
             <label htmlFor="" className='w-full'>
                 Creater
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Creater" {...register(`projects.${index}.creater`)} />
+                <input type="text" className="bg-[#F5F7FA] border-1 border-[#343C6A]e w-full h-10 text-black px-5 rounded-[5px]" placeholder="Creater" {...register(`projects.${index}.creater`)} />
             </label>
 
             <label htmlFor="" className='w-full flex flex-col'>
                 Date
-                <input type="date" className="bg-white w-fit h-10 text-black px-5 rounded-[5px]" placeholder="Date" {...register(`projects.${index}.date`, {
+                <input type="date" className="bg-[#F5F7FA] border-1 border-[#343C6A] w-fit h-10 text-black px-5 rounded-[5px]" placeholder="Date" {...register(`projects.${index}.date`, {
                     valueAsDate: true,
                 }
                 )} />
@@ -45,8 +45,8 @@ export default function ProjectCard({ index, register, control, remove }) {
                 <h3>Tags:</h3>
 
                 <div className="flex sm:flex-row flex-col gap-5">
-                    <input type="text" className="outline-none bg-white border-black border-2 rounded-[5px] text-black px-5 py-1" placeholder="Tag name" value={tagValue} onChange={(e) => setTagValue(e.target.value)} />
-                    <button type="button" className="bg-[#444444] px-3 py-1 rounded-[5px] cursor-pointer duration hover:bg-white/5" onClick={() => {
+                    <input type="text" className="outline-none bg-[#F5F7FA] border-1 border-[#343C6A] rounded-[5px] text-black px-5 py-1" placeholder="Tag name" value={tagValue} onChange={(e) => setTagValue(e.target.value)} />
+                    <button type="button" className="duration-100 bg-[#343C6A] text-white hover:text-[#343C6A] border-1 border-[#343C6A] px-3 py-1 rounded-[5px] cursor-pointer duration hover:bg-white/5" onClick={() => {
                         if (tagValue.trim()) {
                             append({ tag: tagValue }); setTagValue('')
                         }
@@ -54,7 +54,7 @@ export default function ProjectCard({ index, register, control, remove }) {
                 </div>
 
                 <ul className="flex flex-wrap gap-5">
-                    {fields.map((field, tagIndex) => <div key={field.id} className="text-black bg-white px-5 rounded-[5px] hover:bg-red-600 cursor-pointer duration-100 hover:text-white py-1" onClick={() => removeTag(tagIndex)}>{field.tag}</div>)}
+                    {fields.map((field, tagIndex) => <div key={field.id} className="bg-[#F5F7FA] border-1 border-[#343C6A] text-blac px-5 rounded-[5px] hover:bg-red-600 cursor-pointer duration-100 hover:text-white py-1" onClick={() => removeTag(tagIndex)}>{field.tag}</div>)}
                 </ul>
             </section>
 
@@ -74,17 +74,17 @@ export default function ProjectCard({ index, register, control, remove }) {
                                 setPreviewPic(URL.createObjectURL(file) || null);
                             }} />)}
                 />
-                <label htmlFor={`projectPic${index}`} className='cursor-pointer bg-white text-black px-3 w-fit rounded-[5px] text-[20px] py-1' >
+                <label htmlFor={`projectPic${index}`} className='cursor-pointer bg-[#F5F7FA] border-1 border-[#343C6A] text-black px-3 w-fit rounded-[5px] text-[20px] py-1' >
                     Choose a picture
                 </label>
                 <div className="">
-                    <img src={previewPic || null} alt="preview picture" className="w-32 h-32 object-cover rounded-[5px] border-2 border-white" />
+                    <img src={previewPic || null} alt="preview picture" className=" w-32 h-32 object-cover rounded-[5px] bg-[#F5F7FA] border-1 border-[#343C6A]" />
                 </div>
             </section>
 
             <label className='w-full'>
                 Project link
-                <input type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px]" placeholder="Project link" {...register(`projects.${index}.link`)} />
+                <input type="text" className=" w-full h-10 text-black px-5 rounded-[5px] bg-[#F5F7FA] border-1 border-[#343C6A]" placeholder="Project link" {...register(`projects.${index}.link`)} />
             </label>
 
 

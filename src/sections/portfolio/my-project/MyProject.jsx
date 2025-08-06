@@ -85,9 +85,9 @@ export default function MyProjects() {
           Lets have a look at my <span className="text-[#FD853A]">Project</span>
         </h2>
 
-        <button className="h-15 basis-1/10 bg-[#FD853A] rounded-[30px] font-[700] text-[20px] text-white cursor-pointer hover:bg-[#fd643a] duration-200 hidden lg:inline">
+        {/* <button className="h-15 basis-1/10 bg-[#FD853A] rounded-[30px] font-[700] text-[20px] text-white cursor-pointer hover:bg-[#fd643a] duration-200 hidden lg:inline">
           See all
-        </button>
+        </button> */}
       </div>
 
       <main

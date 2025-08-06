@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect, lazy } from "react"
 import Logo from '../../../assets/QuickPortfolioLogo.png'
 import avt from '../../../assets/vyvy.jpg'
-import SideBar from "./SideBar";
+const SideBar = lazy(() => import('./SideBar'))
+// import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 
 export default function LandingHeader() {
-    const [loggedin, setLoggedin] = useState(true);
+    const [loggedin, setLoggedin] = useState(false);
+
+    useEffect(() => {
+        setLoggedin(localStorage.getItem('loggedin') == true)
+    }, [])
 
     return (
         <header className="w-full h-25 backdrop-blur flex justify-between items-center px-10 fixed gap-10 z-10">
@@ -14,13 +19,13 @@ export default function LandingHeader() {
             </figure>
 
             <section className="h-1/2 hidden lg:flex items-center gap-3 text-white">
-                <Link to={'/admin'} className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Dashboard</Link>
-                <Link to={'/my-portfolio'} className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Your portfolio</Link>
+                <a href="/admin" target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Dashboard</a>
+                <a href="/my-portfolio" target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Your portfolio</a>
                 <Link className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">About us</Link>
             </section>
 
             <section className="h-1/2 hidden lg:flex gap-5 ">
-                <Link to={'/login'} className={`${loggedin ? 'hidden' : ''} text-white text-[18px] flex justify-center items-center rounded-[15px] h-full w-45 cursor-pointer hover:bg-white/3 duration-100`}>Sign up</Link>
+                <Link to={'/register'} className={`${loggedin ? 'hidden' : ''} text-white text-[18px] flex justify-center items-center rounded-[15px] h-full w-45 cursor-pointer hover:bg-white/3 duration-100`}>Sign up</Link>
                 <Link to={'/login'} className={`${loggedin ? 'hidden' : ''} text-[#333333] text-[18px] flex justify-center items-center bg-[#BFAFF2] rounded-[15px] h-full w-45 cursor-pointer hover:bg-[#d2c6fb] duration-100`}>Log in</Link>
 
                 <div className={`${loggedin ? '' : 'hidden'} h-full flex gap-3 text-white items-center`}>
