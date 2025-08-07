@@ -3,15 +3,29 @@ import googleIcon from '../../assets/googleIcon.png'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
 
 
 export default function LoginBoard() {
     const [showPwd, setShowPwd] = useState(false);
     const [remmeberMe, setRememberMe] = useState(false);
 
-    const { register, handleSubmit, formState: { error } } = useForm({
-        username: '',
-        password: '',
+    const loginSchema = z.object({
+        username: z.string()
+            .min(1, "Username is required")
+            .min(3, "Username must be at least 3 characters"),
+        password: z.string()
+            .min(1, "Password is required")
+            .min(6, "Password must be at least 6 characters")
+    });
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            username: '',
+            password: '',
+        }
     });
 
     function onSubmit(data) {
@@ -28,12 +42,12 @@ export default function LoginBoard() {
                 <h2>Quick Portfolio</h2>
             </figure>
 
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5 w-full pb-10 border-[#E5E5E5] border-b-1'>
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5 w-full pb-10 border-[#E5E5E5] border-b-1' noValidate>
                 <h3 className='text-[#1A1A1A] text-[20px] font-semibold'>Get your own portfolio</h3>
 
                 <label htmlFor="usernameInput" className='flex flex-col gap-1 text-[11px] text-[#333333] '>Username
                     <input type="text" id='usernameInput' {...register('username')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px]' placeholder='Username' />
-
+                    {errors.username && <p className='text-red-500'>{errors.username.message}</p>}
                 </label>
 
 
@@ -42,10 +56,10 @@ export default function LoginBoard() {
                         <input type={showPwd ? 'text' : 'password'} id='passwordInput' {...register('password')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px]' placeholder='Password' />
 
                         <div className='h-12 w-12 shrink-0 flex justify-center items-center absolute right-[-48px] cursor-pointer text-[17px]' onClick={() => setShowPwd(s => !s)}>
-                            <i class={`fa-solid ${showPwd ? 'fa-eye' : "fa-eye-slash"}`}></i>
+                            <i className={`fa-solid ${showPwd ? 'fa-eye' : "fa-eye-slash"}`}></i>
                         </div>
                     </div>
-
+                    {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                 </label>
 
                 <div className='w-full h-5 flex justify-between text-[12px]'>
