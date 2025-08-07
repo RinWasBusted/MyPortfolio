@@ -5,11 +5,15 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 
 export default function LoginBoard() {
     const [showPwd, setShowPwd] = useState(false);
     const [remmeberMe, setRememberMe] = useState(false);
+
+    const navigate = useNavigate();
 
     const loginSchema = z.object({
         username: z.string()
@@ -33,10 +37,13 @@ export default function LoginBoard() {
             ...data,
             remmeberMe
         });
+        navigate('/admin')
+        toast.success('Login success')
     }
 
     return (
         <section className="w-full h-fit bg-white shrink-0  pb-10 flex flex-col gap-12 ">
+
             <figure className='flex text-[30px] font-[600] h-12 items-center gap-5'>
                 <img src={Logo} alt="Logo" className='h-full' />
                 <h2>Quick Portfolio</h2>

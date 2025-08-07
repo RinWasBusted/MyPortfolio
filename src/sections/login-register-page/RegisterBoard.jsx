@@ -5,10 +5,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function RegisterBoard() {
     const [showPwd, setShowPwd] = useState(false);
+    const navigate = useNavigate();
 
     const registerSchema = z.object({
         email: z.string().email("Please enter a valid email"),
@@ -28,11 +31,14 @@ export default function RegisterBoard() {
             password: '',
             confirmPwd: '',
         }
+
     });
 
     function onSubmit(data) {
         const { confirmPwd: _confirmPwd, ...submitData } = data;
         console.log("Form data:", submitData);
+        navigate('/login')
+        toast.success('You have create an account')
     }
 
     return (

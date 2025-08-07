@@ -1,5 +1,6 @@
-import { useRef, lazy } from "react";
+import { useRef } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from 'sonner';
 import smoothscroll from "smoothscroll-polyfill";
 import MainLayout from "../layout/MainLayout";
 import AdminLayout from "../layout/AdminLayout";
@@ -115,7 +116,10 @@ function App() {
 
 
   return (
-    <RouterProvider router={PageRouter}></RouterProvider>
+    <>
+      <RouterProvider router={PageRouter}></RouterProvider>
+      <Toaster position="top-right" richColors />
+    </>
   );
 }
 

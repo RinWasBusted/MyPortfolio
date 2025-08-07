@@ -23,6 +23,7 @@
     "react-hook-form": "^7.61.1",
     "react-router-dom": "^7.7.1",
     "smoothscroll-polyfill": "^0.4.4",
+    "sonner": "^2.0.7",
     "tailwindcss": "^4.1.11",
     "zod": "^4.0.15"
   },
