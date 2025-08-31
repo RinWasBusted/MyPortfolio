@@ -1,0 +1,73 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: portfolio-mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-P@ssw0rd!234}
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "${MSSQL_SA_PASSWORD:-P@ssw0rd!234}", "-C", "-Q", "SELECT 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  minio:
+    image: minio/minio:latest
+    container_name: portfolio-minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin123}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: [ "CMD", "mc", "ready", "local" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c " mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin123} && mc mb -p local/${MINIO_BUCKET:-portfolio-bucket} || true && mc anonymous set download local/${MINIO_BUCKET:-portfolio-bucket} || true "
+    restart: "no"
+
+  app:
+    image: nhism/portfolio-be:${APP_IMAGE_TAG:-latest}
+    container_name: portfolio-app
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      minio-init:
+        condition: service_completed_successfully
+    environment:
+      - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-docker}
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://db:1433;databaseName=${DB_NAME:-portfolio};encrypt=false;trustServerCertificate=true
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=${MSSQL_SA_PASSWORD:-P@ssw0rd!234}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=${DDL_AUTO:-update}
+      - SPRING_JPA_SHOW_SQL=${SHOW_SQL:-false}
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_BUCKET=${MINIO_BUCKET:-portfolio-bucket}
+      - MINIO_ACCESS_KEY=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_SECRET_KEY=${MINIO_ROOT_PASSWORD:-minioadmin123}
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  mssql-data:
+  minio-data:

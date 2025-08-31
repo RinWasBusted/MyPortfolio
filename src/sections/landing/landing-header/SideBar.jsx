@@ -12,8 +12,8 @@ export default function SideBar({ loggedin }) {
                 <i class={`fa-solid ${showNavBar ? "fa-x" : 'fa-bars'} `}></i>
             </div>
             <section className={`duration-200 ${showNavBar ? '' : 'translate-x-[100%]'} lg:hidden bg-[#2B2B2B] w-3/4 sm:w-1/2 h-[100vh] fixed top-0 right-0 flex flex-col gap-20 py-20 px-10 z-2`}>
-                <section className=" flex-col gap-5 ">
-                    <Link to={'/login'} className={`${loggedin ? 'hidden' : ''} text-white text-[18px] flex justify-center items-center rounded-[15px] h-15 w-full cursor-pointer hover:bg-white/3 duration-100`}>Sign up</Link>
+                <section className="flex flex-col gap-5 ">
+                    <Link to={'/register'} className={`${loggedin ? 'hidden' : ''} text-white text-[18px] flex justify-center items-center rounded-[15px] h-15 w-full cursor-pointer hover:bg-white/3 duration-100`}>Sign up</Link>
                     <Link to={'/login'} className={`${loggedin ? 'hidden' : ''} text-[#333333] text-[18px] flex justify-center items-center bg-[#BFAFF2] rounded-[15px] h-15 w-full  cursor-pointer hover:bg-[#d2c6fb] duration-100`}>Log in</Link>
 
                     <div className={`${loggedin ? '' : 'hidden'} h-full flex w-full gap-3 text-white items-center`}>

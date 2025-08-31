@@ -1,30 +1,31 @@
 import { useState, useEffect } from 'react';
-import ProfileForm from '../profile-form/ProfileForm';
+import { useNavigate } from 'react-router-dom';
 
-export default function SideBar({ handleChangeBoard }) {
+export default function SideBar() {
     const [currentNav, setCurrentNav] = useState("ProfileForm");
     const [showSideBar, setShowSideBar] = useState(false);
+    const navigator = useNavigate()
 
     const boardList = [
         {
             content: "Profile",
-            board: "ProfileForm",
+            board: "profile",
         },
         {
             content: "Hero banner",
-            board: "HeroBannerForm",
+            board: "hero-banner",
         },
         {
             content: "My service",
-            board: "MyServiceForm",
+            board: "service",
         },
         {
             content: "My work experience",
-            board: "MyWorkExperienceForm",
+            board: "work-experience",
         },
         {
             content: "Why hire me",
-            board: "WhyHireMeForm",
+            board: "about",
         },
         // {
         //     content: "Marquee",
@@ -32,7 +33,7 @@ export default function SideBar({ handleChangeBoard }) {
         // },
         {
             content: "My project",
-            board: "MyProjectForm",
+            board: "project",
         },
         // {
         //     content: "Footer",
@@ -54,7 +55,7 @@ export default function SideBar({ handleChangeBoard }) {
     return (
         <>
             <button
-                className="lg:!hidden fixed z-2 left-5 top-3 cursor-pointer hover:opacity-80 shrink-0"
+                className="lg:!hidden fixed z-2 left-5 top-3 cursor-pointer hover:opacity-80 shrink-0 text-black"
                 onClick={() => setShowSideBar((s) => !s)}
             >
                 <i className={`fa-solid ${showSideBar ? "fa-xmark" : "fa-bars"} text-[30px]`}></i>
@@ -68,7 +69,7 @@ export default function SideBar({ handleChangeBoard }) {
                 </figure>
                 <nav className=" h-full grow-1 w-full flex flex-col ">
 
-                    {boardList.map((item, index) => <button key={index} className={`text-[18px] text-start px-10 w-full h-16 cursor-pointer hover:text-[#2D60FF] after:absolute relative after:left-0 after:bg-[#2D60FF] after:h-full after:w-2 after:rounded-r-[4px] after:scale-x-0 hover:after:scale-x-100 after:duration-100 after:origin-left after:top-0 duration-100 hover:text-[20px] ${currentNav == item.board ? 'text-[#2D60FF]' : ''}`} onClick={() => { handleChangeBoard(item.board); setCurrentNav(item.board) }}>{item.content}</button>)}
+                    {boardList.map((item, index) => <button key={index} className={`text-[18px] text-start px-10 w-full h-16 cursor-pointer hover:text-[#2D60FF] after:absolute relative after:left-0 after:bg-[#2D60FF] after:h-full after:w-2 after:rounded-r-[4px] after:scale-x-0 hover:after:scale-x-100 after:duration-100 after:origin-left after:top-0 duration-100 hover:text-[20px] ${currentNav == item.board ? 'text-[#2D60FF]' : ''}`} onClick={() => { navigator(`/admin/${item.board}`); setCurrentNav(item.board) }}>{item.content}</button>)}
 
                 </nav>
             </aside >

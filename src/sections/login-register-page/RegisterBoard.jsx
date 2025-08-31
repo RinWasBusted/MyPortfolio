@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../services/userManagementAPI';
+import { useMutation } from '@tanstack/react-query';
 
 
 export default function RegisterBoard() {
@@ -15,30 +17,40 @@ export default function RegisterBoard() {
 
     const registerSchema = z.object({
         email: z.string().email("Please enter a valid email"),
-        username: z.string().min(8, "Username must be at least 8 characters"),
+        fullName: z.string().min(8, "Your full name must be at least 8 characters"),
         password: z.string().min(8, "Password must be at least 8 characters"),
-        confirmPwd: z.string()
-    }).refine((data) => data.password === data.confirmPwd, {
+        confirmPassword: z.string()
+    }).refine((data) => data.password === data.confirmPassword, {
         message: "Passwords don't match",
-        path: ["confirmPwd"]
+        path: ["confirmPassword"]
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(registerSchema),
         defaultValues: {
             email: '',
-            username: '',
+            fullName: '',
             password: '',
-            confirmPwd: '',
+            confirmPassword: '',
         }
 
     });
 
+    const { mutate, isPending } = useMutation({
+        mutationFn: registerUser,
+        onSuccess: () => {
+            toast.success('Register successfully');
+            navigate('/login')
+        },
+        onError: (e) => toast.error(e.message)
+    })
+
     function onSubmit(data) {
-        const { confirmPwd: _confirmPwd, ...submitData } = data;
-        console.log("Form data:", submitData);
-        navigate('/login')
-        toast.success('You have create an account')
+        const newUser = {
+            ...data,
+            phone: ''
+        };
+        mutate(newUser);
     }
 
     return (
@@ -56,9 +68,9 @@ export default function RegisterBoard() {
                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                 </label>
 
-                <label htmlFor="usernameInput" className='flex flex-col gap-1 text-[11px] text-[#333333] '>Username
-                    <input type="text" id='usernameInput' {...register('username')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px] ' placeholder='Username' />
-                    {errors.username && <p className='text-red-500'>{errors.username.message}</p>}
+                <label htmlFor="fullNameInput" className='flex flex-col gap-1 text-[11px] text-[#333333] '>Full name
+                    <input type="text" id='fullNameInput' {...register('fullName')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px] ' placeholder='Full name' />
+                    {errors.fullName && <p className='text-red-500'>{errors.fullName.message}</p>}
                 </label>
 
 
@@ -73,14 +85,14 @@ export default function RegisterBoard() {
                     </div>
 
                     <div className='h-12 w-full relative'>
-                        <input type={showPwd ? 'text' : 'password'} id='confirmPasswordInput' {...register('confirmPwd')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px]' placeholder='Confirm your password' />
-                        {errors.confirmPwd && <p className='text-red-500'>{errors.confirmPwd.message}</p>}
+                        <input type={showPwd ? 'text' : 'password'} id='confirmPasswordInput' {...register('confirmPassword')} className='h-12 bg-[#F2F2F2] w-full px-5 rounded-[5px] focus:border-2 outline-none border-[#007AFF] text-[15px]' placeholder='Confirm your password' />
+                        {errors.confirmPassword && <p className='text-red-500'>{errors.confirmPassword.message}</p>}
                     </div>
 
                 </label>
 
 
-                <button type='submit' className='w-full h-10 flex justify-center items-center bg-[#007AFF] text-white font-bold cursor-pointer rounded-[6px] hover:opacity-80'>Sign up</button>
+                <button type='submit' disabled={isPending} className='w-full disabled:opacity-80 disabled:cursor-auto h-10 flex justify-center items-center bg-[#007AFF] text-white font-bold cursor-pointer rounded-[6px] hover:opacity-80'>Sign up</button>
             </form >
 
             <div className='text-[12px] text-center mb-5'>

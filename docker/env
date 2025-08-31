@@ -1,0 +1,11 @@
+MSSQL_SA_PASSWORD=P@ssw0rd!234
+DB_NAME=portfolio
+
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin123
+MINIO_BUCKET=portfolio-bucket
+
+SPRING_PROFILES_ACTIVE=docker
+DDL_AUTO=update
+SHOW_SQL=false
+APP_IMAGE_TAG=1.0.2

@@ -7,6 +7,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { loginUser } from '../../services/userManagementAPI';
+import { useMutation } from '@tanstack/react-query';
 
 
 export default function LoginBoard() {
@@ -32,13 +34,18 @@ export default function LoginBoard() {
         }
     });
 
-    function onSubmit(data) {
-        console.log({
-            ...data,
-            remmeberMe
-        });
-        navigate('/admin')
-        toast.success('Login success')
+    const { mutate, isPending } = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (response) => {
+            localStorage.setItem('accessToken', response.data.accessToken)
+            toast.success('Login successfully')
+            navigate('/admin/profile')
+        },
+        onError: (e) => toast.error(e.message)
+    })
+
+    async function onSubmit(data) {
+        mutate(data);
     }
 
     return (
@@ -78,10 +85,10 @@ export default function LoginBoard() {
                     <Link className='text-[#007AFF] hover:underline'>Forgot password?</Link>
                 </div>
 
-                <button type='submit' className='w-full h-10 flex justify-center items-center bg-[#007AFF] text-white font-bold cursor-pointer rounded-[6px] hover:opacity-80'>Sign in</button>
+                <button type='submit' disabled={isPending} className='w-full disable:opacity-80 h-10 flex justify-center items-center bg-[#007AFF] text-white font-bold cursor-pointer rounded-[6px] hover:opacity-80'>Sign in</button>
             </form >
 
-            <button type='submit' className='w-full h-10 flex justify-center items-center bg-[#333333] text-[12px] font-[400] text-white cursor-pointer rounded-[6px]  hover:opacity-80'>
+            <button type='button' className='w-full h-10 flex justify-center items-center bg-[#333333] text-[12px] font-[400] text-white cursor-pointer rounded-[6px]  hover:opacity-80'>
                 <img src={googleIcon} alt="google icon" className='h-5 mr-2' />
                 Or sign in with google
             </button>
