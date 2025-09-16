@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 
 export default function LandingHeader() {
     const [loggedin, setLoggedin] = useState(false);
+    const accessToken = localStorage.getItem('accessToken') || null;
 
     useEffect(() => {
-        setLoggedin(localStorage.getItem('loggedin') == true)
-    }, [])
+        if (accessToken) setLoggedin(true);
+
+    }, [accessToken])
 
     return (
         <header className="w-full h-25 backdrop-blur flex justify-between items-center px-10 fixed gap-10 z-10">
@@ -19,8 +21,8 @@ export default function LandingHeader() {
             </figure>
 
             <section className="h-1/2 hidden lg:flex items-center gap-3 text-white">
-                <a href="/admin" target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Dashboard</a>
-                <a href="/my-portfolio" target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Your portfolio</a>
+                <a href={accessToken ? "/admin" : '/login'} target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Dashboard</a>
+                <a href={accessToken ? `/my-portfolio` : '/login'} target="_blank" className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">Your portfolio</a>
                 <Link className="cursor-pointer h-full hover:bg-white/5 w-30 duration-100 rounded-[5px] hover:font-[500] flex justify-center items-center">About us</Link>
             </section>
 

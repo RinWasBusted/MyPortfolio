@@ -12,12 +12,13 @@ import MyProjectForm from '../sections/admin-page/my-project-form/MyProjectForm.
 import { Outlet } from 'react-router-dom';
 
 export default function AdminLayout() {
-    const accessToken = localStorage.getItem('accessToken') || false;
+    const accessToken = localStorage.getItem('accessToken') || null;
     const navigate = useNavigate();
 
 
     useEffect(() => {
         if (!accessToken) navigate('/login');
+        else navigate('/admin/profile')
 
     }, [navigate, accessToken]);
 

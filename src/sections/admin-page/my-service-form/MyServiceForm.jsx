@@ -38,10 +38,10 @@ export default function MyServiceForm() {
         <section className=" min-h-50 flex flex-col  ">
             <h2 className="text-[30px] font-[600] mb-5">My Service</h2>
             <form action="" className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" onSubmit={handleSubmit}>
-                <label htmlFor="" className='w-full'>
+                {/* <label htmlFor="" className='w-full'>
                     Description
                     <textarea type="text" className="bg-white w-full h-10 text-black px-5 rounded-[5px] border-1 border-[#343C6A] " placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                </label>
+                </label> */}
 
                 <ul className='flex flex-col gap-10 w-full'>
                     {cards.map((card) => <Card card={card} handleChange={handleChange} key={card.id} handleDeleteCard={handleDeleteCard}></Card>)}

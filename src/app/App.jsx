@@ -30,6 +30,7 @@ import SectionPreview from "../sections/landing/section-preview/SectionPreview";
 
 import LoginBoard from "../sections/login-register-page/LoginBoard";
 import RegisterBoard from "../sections/login-register-page/RegisterBoard";
+import ProjectCard from "../sections/admin-page/my-project-form/ProjectCard";
 
 
 function App() {
@@ -130,6 +131,14 @@ function App() {
         {
           path: 'project',
           element: <MyProjectForm></MyProjectForm>
+        },
+        {
+          path: 'project/edit/:id',
+          element: <ProjectCard></ProjectCard>
+        },
+        {
+          path: 'project/post',
+          element: <ProjectCard></ProjectCard>
         },
       ]
     },

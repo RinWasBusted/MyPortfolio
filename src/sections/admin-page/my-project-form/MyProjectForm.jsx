@@ -1,85 +1,32 @@
 // import { useState } from 'react';
 import ProjectCard from './ProjectCard';
-import { useForm, useFieldArray } from 'react-hook-form';
-
+import { useQuery } from '@tanstack/react-query';
+import { getProjectList } from '../../../services/projectManagementAPI';
+import { ProjectItem } from './ProjectItem';
+import { Link } from 'react-router-dom';
 export default function MyProjectForm() {
 
-    const { register, handleSubmit, control } = useForm({
-        defaultValues: {
-            projects: [
-                {
-                    title: "Design Unraveled: Behind the Scenes of UI/UX Magic",
-                    creater: 'Thai Pham',
-                    date: '2006-08-27',
-                    tags: [{ tag: 'UX/UI Design' }, { tag: 'App Design' }, { tag: 'Web dev' }],
-                    pic: null,
-                    link: '',
-                },
-                {
-                    id: 2,
-                    title: "Design Unraveled: Behind the Scenes of UI/UX Magic",
-                    creater: 'Thai Pham',
-                    date: '2024-07-28',
-                    tags: [{ tag: 'UX/UI Design' }, { tag: 'App Design' }, { tag: 'Web dev' }],
-                    pic: null,
-                    link: '',
-                },
-                {
-                    id: 3,
-                    title: "Design Unraveled: Behind the Scenes of UI/UX Magic",
-                    creater: 'Thai Pham',
-                    date: '2024-07-28',
-                    tags: [{ tag: 'UX/UI Design' }, { tag: 'App Design' }, { tag: 'Web dev' }],
-                    pic: null,
-                    link: '',
-                },
-            ]
-        }
-    });
+    const { data: projectList, isFetching } = useQuery({
+        queryKey: ['project'],
+        queryFn: () => getProjectList()
+    })
 
-    const { fields, append, remove } = useFieldArray(
-        {
-            control,
-            name: 'projects'
-        }
-    );
 
-    function onSubmit(data) {
-        console.log("Submitted! ", data);
-    }
 
+    if (isFetching) return <div>Loading project list...</div>;
 
     return (
         <section className=" min-h-50 flex flex-col ">
-            <h2 className="text-[30px] font-[600] mb-5">My project</h2>
+            <div className='w-full flex justify-between mb-10'>
+                <h2 className="text-[30px] font-[600] mb-5">My project</h2>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="w-full min-h-10 flex flex-col items-start gap-5 overflow-hidden" noValidate>
+                <Link to={'/admin/project/post'} type='button' className="h-10 flex justify-center items-center cursor-pointer border-1 border-[#343C6A]cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]" >Add project</Link>
+            </div>
 
-                <ul className='flex flex-col gap-10 w-full'>
-                    {fields.map((field, index) =>
-                        <ProjectCard
-                            // project={project}
-                            index={index}
-                            register={register}
-                            key={field.id}
-                            remove={remove}
-                            control={control}
-                        >
-
-                        </ProjectCard>)}
-
-                    <button type='button' onClick={() => append({
-                        title: "",
-                        creater: '',
-                        date: '',
-                        tags: [],
-                        pic: null,
-                        link: '',
-                    },)} className=" border-1 border-[#343C6A]cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Add project</button>
-                </ul>
-
-                <button type="submit" className=" border-1 border-[#343C6A] cursor-pointer bg-white text-black px-3 rounded-[5px] text-[20px]">Save</button>
-            </form>
+            <ul className='flex flex-col gap-5 w-full'>
+                {projectList.length == 0 && <h3>You haven't post any project...</h3>}
+                {projectList.map((item) => <ProjectItem key={item.id} project={item}></ProjectItem>)}
+            </ul>
         </section >
     )
 }

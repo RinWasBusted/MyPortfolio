@@ -52,6 +52,11 @@ export default function SideBar() {
         setShowSideBar(false);
     }, [currentNav]);
 
+    const handleLogOut = () => {
+        navigator('/login');
+        localStorage.clear();
+    };
+
     return (
         <>
             <button
@@ -72,6 +77,8 @@ export default function SideBar() {
                     {boardList.map((item, index) => <button key={index} className={`text-[18px] text-start px-10 w-full h-16 cursor-pointer hover:text-[#2D60FF] after:absolute relative after:left-0 after:bg-[#2D60FF] after:h-full after:w-2 after:rounded-r-[4px] after:scale-x-0 hover:after:scale-x-100 after:duration-100 after:origin-left after:top-0 duration-100 hover:text-[20px] ${currentNav == item.board ? 'text-[#2D60FF]' : ''}`} onClick={() => { navigator(`/admin/${item.board}`); setCurrentNav(item.board) }}>{item.content}</button>)}
 
                 </nav>
+
+                <button type='button' className={`text-[18px] text-start px-10 w-full h-16 cursor-pointer hover:text-[#2D60FF] after:absolute relative after:left-0 after:bg-[#2D60FF] after:h-full after:w-2 after:rounded-r-[4px] after:scale-x-0 hover:after:scale-x-100 after:duration-100 after:origin-left after:top-0 duration-100 hover:text-[20px] mb-10`} onClick={handleLogOut}>Log out</button>
             </aside >
         </>
 
