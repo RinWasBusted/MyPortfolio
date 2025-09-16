@@ -134,11 +134,11 @@ function App() {
         },
         {
           path: 'project/edit/:id',
-          element: <ProjectCard></ProjectCard>
+          element: <ProjectCard type="edit"></ProjectCard>
         },
         {
           path: 'project/post',
-          element: <ProjectCard></ProjectCard>
+          element: <ProjectCard type="post"></ProjectCard>
         },
       ]
     },

@@ -1,23 +1,57 @@
 import { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from "react-hook-form";
 import { useQuery } from '@tanstack/react-query';
-import { getProjectById } from '../../../services/projectManagementAPI';
+import { getProjectById, postProject, deleteProject } from '../../../services/projectManagementAPI';
 import { useParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectCard({ type = 'post' }) {
+    const navigator = useNavigate();
     const [tagValue, setTagValue] = useState('');
     const [previewPic, setPreviewPic] = useState();
     const { id } = useParams();
+    const [thumbnailPic, setThumbnailPic] = useState(null);
 
     const { data: postData } = useQuery({
         queryKey: ['projects', id],
         queryFn: () => getProjectById(id),
         enabled: type != 'post' && !!id,
+        onSuccess: (data) => { console.log(data) }
     })
 
-    // useEffect(() => {
-    //     console.log(postData)
-    // }, [postData])
+    const onSubmit = async (data) => {
+        if(type == 'post'){
+            const projectData = {
+                ...data,
+                tags: data.tags.length > 0 ? data.tags.map((tag) => (tag.name)) : [],
+                thumbnailUrl: thumbnailPic || null,
+            };
+            const response = await postProject(projectData);
+            console.log('New project:',response);
+        } else {
+            const projectData = {
+                ...data,
+                tags: data.tags.length > 0 ? data.tags.map((tag) => (tag.name)) : [],
+                thumbnailUrl: thumbnailPic || null,
+            };
+            const response = await postProject(projectData);
+            console.log('Updated project:',response);
+        }
+        
+    };
+
+    const {mutate} = useMutation({
+        mutationFn: onSubmit,
+        onSuccess: () => { toast.success(type == 'post' ? 'Project posted successfully' : 'Project saved successfully');
+            navigator('/admin/project');
+        },
+        onError: (error) => {
+            toast.error(error.message.split(':')[1]);
+            console.error(error);
+        }
+    });
 
     const getDefaultValues = () => {
         if (type == 'post') {
@@ -63,6 +97,7 @@ export default function ProjectCard({ type = 'post' }) {
 
     const onPictureChange = (e) => {
         const file = e.target.files?.[0] || null;
+        setThumbnailPic(file);
         if (file) {
             const pic = URL.createObjectURL(file);
             setPreviewPic(pic);
@@ -71,20 +106,24 @@ export default function ProjectCard({ type = 'post' }) {
         }
     }
 
-    const onSubmit = (data) => {
-        const projectData = {
-            ...data,
-            tags: data.tags.length > 0 ? data.tags.map((tag) => (tag.name)) : []
-        }
-        console.log(projectData)
-    };
+    const onDelete = () => {
+            async function handleDelete() {
+                const isDelete = window.confirm('Are you sure you want to delete that project?');
+                if (isDelete) {
+                    await deleteProject(id);
+                    console.log('project deleted');
+                    location.reload();
+                };
+            }
+            handleDelete();
+        };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='w-full border-1 border-[#343C6A] shadow-2xs bg-white p-5 sm:p-10 rounded-[5px] flex flex-col gap-5'>
+        <form onSubmit={handleSubmit( data => mutate(data))} className='w-full border-1 border-[#343C6A] shadow-2xs bg-white p-5 sm:p-10 rounded-[5px] flex flex-col gap-5'>
             <div className="w-full flex justify-between">
                 <h3 className="text-[20px] font-[600]">Project </h3>
 
-                <button type="button" className='cursor-pointer bg-red-600 text-black px-3 w-fit rounded-[5px] text-[20px]'>Delete</button>
+                <button type="button" onClick={onDelete}  className={`${type == 'post' && 'hidden'} cursor-pointer bg-red-600 text-black px-3 w-fit rounded-[5px] text-[20px]`}>Delete</button>
             </div>
 
             <section className="flex flex-col gap-3">
@@ -143,7 +182,7 @@ export default function ProjectCard({ type = 'post' }) {
                 <input type="text" className=" w-full h-10 text-black px-5 rounded-[5px] bg-[#F5F7FA] border-1 border-[#343C6A]" placeholder="Project link" {...register(`projects.${index}.link`)} />
             </label> */}
 
-            <button type="submit" className="duration-100 mt-5 bg-[#343C6A] text-white hover:text-[#343C6A] border-1 border-[#343C6A] px-3 py-1 rounded-[5px] cursor-pointer duration hover:bg-white/5">Save</button>
+            <button type="submit" className="duration-100 mt-5 bg-[#343C6A] text-white hover:text-[#343C6A] border-1 border-[#343C6A] px-3 py-1 rounded-[5px] cursor-pointer duration hover:bg-white/5">{type == 'post' ? 'Publish' : 'Save'}</button>
 
         </form >
     )
